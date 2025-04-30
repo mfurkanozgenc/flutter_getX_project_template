@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:project_template/constants/color_constants.dart';
 import 'package:project_template/pages/pages.dart';
 
-void main() {
+Future<void> main() async {
   configEasyLoading();
+  await Hive.initFlutter();
+  var box = await Hive.openBox('myBox');
   runApp(const MainApp());
 }
 
@@ -15,8 +18,6 @@ void configEasyLoading() {
   EasyLoading.instance
     ..loadingStyle = EasyLoadingStyle.custom
     ..indicatorColor = colors.generalColor
-
-    
     ..indicatorWidget = SpinKitFadingCircle(
       color: colors.generalColor,
       size: 45.0,

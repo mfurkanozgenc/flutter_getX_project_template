@@ -9,6 +9,7 @@ import 'package:project_template/widgets/main_safe_area.dart';
 class HomeView extends GetView<HomeController> with BaseState {
   @override
   Widget build(BuildContext context) {
+    var loginUser = controller.getLoginUser();
     return MainSafeArea(
       floatingActionButton: FloatingActionButton(
           backgroundColor: colors.generalColor.shade400,
@@ -21,7 +22,7 @@ class HomeView extends GetView<HomeController> with BaseState {
           )),
       appBar: MainAppBar(
         backgroundColor: colors.generalColor.shade700,
-        title: Text('Hoşgeldiniz'),
+        title: Text('Hoşgeldiniz : ${loginUser.name} ${loginUser.surname}'),
       ),
     );
   }

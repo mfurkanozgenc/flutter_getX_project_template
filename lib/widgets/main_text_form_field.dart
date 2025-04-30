@@ -59,10 +59,10 @@ class MainTextFormField extends StatelessWidget {
           suffixIcon: suffixIcon,
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: colors.generalColor.shade200)),
+              borderSide: BorderSide(color: colors.generalColor.shade400)),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
-              borderSide: BorderSide(color: colors.generalColor.shade700)),
+              borderSide: BorderSide(color: colors.generalColor.shade100)),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),
               borderSide: BorderSide(color: colors.errorColor.shade400)),
