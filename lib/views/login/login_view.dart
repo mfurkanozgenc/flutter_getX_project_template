@@ -11,74 +11,172 @@ import 'package:project_template/widgets/main_text_form_field.dart';
 class LoginView extends GetView<LoginController> with BaseState {
   @override
   Widget build(BuildContext context) {
-    return MainSafeArea(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Container(
-              height: Get.height / 3,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: colors.generalColor.shade400,
-              ),
-              child: Center(
-                child: Text(
-                  'Giriş Yapın',
-                  style: TextStyle(color: colors.lightColor),
-                ),
-              ),
-            ),
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              colors.generalColor.shade200,
+              colors.generalColor.shade400,
+              colors.generalColor,
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: SingleChildScrollView(
+        ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  MainTextFormField(
-                    labelText: 'Kullanıcı Adı',
+                  SizedBox(height: Get.height * 0.05),
+                  // Logo veya uygulama adı
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 15,
+                          offset: Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.lock_outline_rounded,
+                        size: 60,
+                        color: colors.generalColor,
+                      ),
+                    ),
                   ),
-                  MainTextFormField(
-                    labelText: 'Şifre',
-                    obscureText: true,
+                  SizedBox(height: 30),
+                  Text(
+                    'Hoş Geldiniz',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                    ),
                   ),
-                  MainElevatedButton(
-                    icon: Icon(Icons.login),
-                    backgroundColor: colors.generalColor.shade400,
-                    width: Get.width * .8,
-                    padding: EdgeInsets.all(15),
-                    onPressed: controller.login,
-                    child: Text('Giriş'),
-                  )
+                  SizedBox(height: 8),
+                  Text(
+                    'Hesabınıza giriş yapın',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.8),
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(height: 50),
+                  // Form alanları
+                  Container(
+                    padding: EdgeInsets.all(28),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 20,
+                          offset: Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        MainTextFormField(
+                          labelText: 'Kullanıcı Adı',
+                          prefixIcon: Icon(Icons.person_outline,
+                              color: colors.generalColor),
+                          paddingSize: 0,
+                        ),
+                        SizedBox(height: 16),
+                        MainTextFormField(
+                          labelText: 'Şifre',
+                          obscureText: true,
+                          prefixIcon: Icon(Icons.lock_outline,
+                              color: colors.generalColor),
+                          paddingSize: 0,
+                        ),
+                        SizedBox(height: 8),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Şifremi Unuttum',
+                              style: TextStyle(
+                                color: colors.generalColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 24),
+                        MainElevatedButton(
+                          icon: Icon(Icons.login_rounded),
+                          backgroundColor: colors.generalColor,
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(vertical: 16),
+                          onPressed: controller.login,
+                          child: Text(
+                            'GİRİŞ YAP',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 30),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Hesabınız yok mu? ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                      children: [
+                        TextSpan(
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Get.toNamed(Routes.register);
+                            },
+                          text: 'Kayıt Ol',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 40),
+                  Text(
+                    globals.appVersionNo,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                    ),
+                  ),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
           ),
-          RichText(
-              text: TextSpan(
-                  text: 'Hesabınız Yok Mu ?',
-                  style: TextStyle(color: colors.darkColor),
-                  children: [
-                TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Get.toNamed(Routes.register);
-                      },
-                    text: ' Kayıt Olun',
-                    style: TextStyle(color: colors.generalColor))
-              ]))
-        ],
-      ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 5),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              globals.appVersionNo,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
         ),
       ),
     );
